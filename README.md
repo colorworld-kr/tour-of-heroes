@@ -1,6 +1,11 @@
-# NewTourOfHeroes
+# TourOfHeroes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
+
+## New Project Start 새로운 프로젝트 시작  
+
+Run `ng new tour-of-heroes`  
+Link : <https://angular.kr/tutorial/toh-pt0>  
 
 ## Development server
 
