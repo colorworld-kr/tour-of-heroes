@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from "rxjs";
+import { delay, Observable, of, tap } from "rxjs";
 
 import { Hero } from "./hero";
 import { HEROES } from "./mock-heroes";
@@ -30,8 +30,10 @@ export class HeroService {
   * 이 튜토리얼에서는 리모트 서버를 사용하지 않고 RxJS의 of() 함수로 데이터를 즉시 반환해 봅시다.
   */
   getHeroes(): Observable<Hero[]> {
-    const c_heroes = of(HEROES);
-    this.messageService.add('Heroservice: fetched heroes');
+    const c_heroes = of(HEROES).pipe(
+      delay(1000), // pipe, delay 코드 추가 : 실 서비스와 비슷하게 1초의 딜레이 적용
+      tap(_ => this.messageService.add('HeroService: fetched heroes')), // tap 코드 보완 : 데이터 응답 후 메시지 표시
+    );
     return c_heroes;
   }
 }
