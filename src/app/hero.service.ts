@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 import { Hero } from "./hero";
 import { HEROES } from "./mock-heroes";
@@ -18,23 +19,19 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class HeroService {
+  // heroesUrl을 :base/:collectionName과 같은 형태로 정의합니다.
+  // 이 주소는 서버의 리소스 위치에 따라 달라질 수 있습니다.
+  // 이 주소에서 base는 어떤 종류의 요청인지 구별하는 변수이며,
+  // collectionName은 in -memory - data - service.ts 파일에 있는 콜렉션을 구별하는 변수입니다.
+  private heroesUrl = 'api/heroes';  // 웹 API 형식의 URL로 사용
 
   constructor(
     private messageService: MessageService,
+    private http: HttpClient,
   ) { }
 
-  /*
-  * 옵저버블 HeroService >> https://angular.kr/tutorial/toh-pt4#옵저버블-heroservice
-  * Observable은 RxJS 라이브러리가 제공하는 클래스 중 가장 중요한 클래스입니다.
-  * 이후에 HTTP에 대해서 알아볼 때 Angular의 HttpClient 클래스가 제공하는 메소드는 모두 RxJS가 제공하는 Observable 타입을 반환한다는 것을 다시 한 번 살펴볼 것입니다.
-  * 이 튜토리얼에서는 리모트 서버를 사용하지 않고 RxJS의 of() 함수로 데이터를 즉시 반환해 봅시다.
-  */
   getHeroes(): Observable<Hero[]> {
-    const c_heroes = of(HEROES).pipe(
-      delay(1000), // pipe, delay 코드 추가 : 실 서비스와 비슷하게 1초의 딜레이 적용
-      tap(_ => this.messageService.add('HeroService: fetched heroes')), // tap 코드 보완 : 데이터 응답 후 메시지 표시
-    );
-    return c_heroes;
+    return this.http.get<Hero[]>(this.heroesUrl);
   }
 
   getHero(id: number): Observable<Hero> {
