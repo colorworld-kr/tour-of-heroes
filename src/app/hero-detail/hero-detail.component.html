@@ -8,3 +8,15 @@
   </div>
 
 </div>
+
+<!-- 직접 hero 정보를 가져오는 방식으로 변경예정 -->
+<div *ngIf="hero_new">
+
+  <h2>{{hero_new.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero_new.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="hero_new.name" placeholder="name">
+  </div>
+
+</div>
