@@ -12,13 +12,13 @@
 </div>
 
 <!-- 직접 hero 정보를 가져오는 방식으로 변경 -->
-<div *ngIf="hero_new">
+<div *ngIf="hero_directly">
   <button type="button" (click)="goBack()">go back</button>
-  <h2>{{hero_new.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero_new.id}}</div>
+  <h2>{{hero_directly.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero_directly.id}}</div>
   <div>
     <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero_new.name" placeholder="name">
+    <input id="hero-name" [(ngModel)]="hero_directly.name" placeholder="name">
   </div>
 
 </div>

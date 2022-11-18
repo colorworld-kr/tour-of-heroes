@@ -12,7 +12,7 @@ import { HeroService } from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero?: Hero;
-  hero_new?: Hero; // 직접 가져오는 방식으로 변경예정
+  hero_directly?: Hero; // 직접 가져오는 방식으로 변경예정
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +35,7 @@ export class HeroDetailComponent implements OnInit {
     // 지금 작성하고 있는 예제에서는 서버로부터 받아올 히어로의 id에 해당하는 값을 URL에 있는 "id" 키로 참조합니다.
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id)
-      .subscribe(t_hero => this.hero_new = t_hero);
+      .subscribe(t_hero => this.hero_directly = t_hero);
   }
   goBack(): void {
     this.location.back();
