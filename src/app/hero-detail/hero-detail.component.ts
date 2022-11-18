@@ -30,6 +30,9 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(): void {
+    // route.snapshot은 컴포넌트가 생성된 직후에 존재하는 라우팅 규칙에 대한 정보를 담고 있는 객체입니다.
+    // 그래서 이 객체가 제공하는 paramMap을 사용하면 URL에 존재하는 라우팅 변수를 참조할 수 있습니다.
+    // 지금 작성하고 있는 예제에서는 서버로부터 받아올 히어로의 id에 해당하는 값을 URL에 있는 "id" 키로 참조합니다.
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id)
       .subscribe(t_hero => this.hero_new = t_hero);
