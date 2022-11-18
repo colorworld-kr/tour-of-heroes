@@ -41,7 +41,9 @@ export class HeroService {
     // 지금은 히어로의 `id` 프로퍼티가 항상 존재한다고 간주합니다.
     // 에러를 처리하는 방법은 다음 튜토리얼에 대해 알아봅니다.
     const hero = HEROES.find(h => h.id === id)!;
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-    return of(hero);
+    return of(hero).pipe(
+      delay(800), // pipe, delay 코드 추가 : 실 서비스와 비슷하게 0.8초의 딜레이 적용
+      tap(_ => this.messageService.add(`HeroService: fetched hero id=${id}`)), // tap 코드 보완 : 데이터 응답 후 메시지 표시
+    );
   }
 }
