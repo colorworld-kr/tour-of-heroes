@@ -1,3 +1,5 @@
+<!-- hero 정보를 넘겨주는 방식에 대응 -->
+<!-- 넘겨주는 방식 : <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
 <div *ngIf="hero">
 
   <h2>{{hero.name | uppercase}} Details</h2>
@@ -9,7 +11,7 @@
 
 </div>
 
-<!-- 직접 hero 정보를 가져오는 방식으로 변경예정 -->
+<!-- 직접 hero 정보를 가져오는 방식으로 변경 -->
 <div *ngIf="hero_new">
 
   <h2>{{hero_new.name | uppercase}} Details</h2>
