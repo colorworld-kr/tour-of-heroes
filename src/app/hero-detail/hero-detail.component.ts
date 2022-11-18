@@ -21,6 +21,11 @@ export class HeroDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // 직접 가져오는 방식 + 넘겨주는 방식 호환되도록 코드 보완
+    const c_exists_id = this.route.snapshot.paramMap.has('id');
+    if (!c_exists_id) {
+      return;
+    }
     this.getHero();
   }
 
