@@ -7,6 +7,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng new tour-of-heroes`  
 Link : <https://angular.kr/tutorial/toh-pt0>  
 
+## 로드맵 (계속 추가)
+
+ver-0.0.x : 튜토리얼 기준 구현
+ver-0.1.x : firebase+firestore 연동 추가 (튜토리얼 기준)
+ver-0.2.x : firebase+function 연동 추가 (튜토리얼 기준)
+ver-0.3.x : function+mysql(procedure) 연동 추가 (튜토리얼 기준)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
