@@ -88,3 +88,9 @@ button.delete:hover {
   background-color: #525252;
   color: white;
 }
+
+@media (min-width: 400px) {
+  input {
+    width: 18.5em;
+  }
+}
