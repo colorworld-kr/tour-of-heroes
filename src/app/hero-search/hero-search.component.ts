@@ -11,6 +11,9 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-search.component.scss']
 })
 export class HeroSearchComponent implements OnInit {
+  // AsyncPipe
+  // *ngFor는 히어로 객체를 순회하는데, 이 때 heroes 배열대신 heroes$를 사용합니다.
+  // $는 Observable을 뜻하는 관용적 표현입니다.
   heroes$!: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
