@@ -60,6 +60,14 @@ export class HeroService {
     );
   }
 
+  /** POST: 서버에 새로운 히어로를 추가합니다. */
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions_json_type).pipe(
+      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+      catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
   /**
  * HTTP 요청이 실패한 경우를 처리합니다.
  * 애플리케이션 로직 흐름은 그대로 유지됩니다.
