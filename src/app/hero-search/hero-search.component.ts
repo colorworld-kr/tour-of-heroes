@@ -30,6 +30,9 @@ export class HeroSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // 검색어가 변경되면 새로운 옵저버블을 생성합니다.
+      // 참고:
+      // 이전에 발생한 searchHeroes() Observable을 취소했다고 해서 이미 보낸 HTTP 요청을 취소하지는 않습니다.
+      // 필요없는 응답은 애플리케이션 코드에서 처리하세요.
       switchMap((term: string) => this.heroService.searchHeroes(term)),
     );
   }
