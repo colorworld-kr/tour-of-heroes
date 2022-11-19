@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of, tap } from "rxjs";
+import { delay, Observable, of, tap, catchError } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Hero } from "./hero";
 import { HEROES } from "./mock-heroes";
@@ -18,32 +19,88 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class HeroService {
+  // heroesUrl을 :base/:collectionName과 같은 형태로 정의합니다.
+  // 이 주소는 서버의 리소스 위치에 따라 달라질 수 있습니다.
+  // 이 주소에서 base는 어떤 종류의 요청인지 구별하는 변수이며,
+  // collectionName은 in -memory - data - service.ts 파일에 있는 콜렉션을 구별하는 변수입니다.
+  private heroesUrl = 'api/heroes';  // 웹 API 형식의 URL로 사용
+
+  readonly httpOptions_json_type = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(
     private messageService: MessageService,
+    private http: HttpClient,
   ) { }
 
-  /*
-  * 옵저버블 HeroService >> https://angular.kr/tutorial/toh-pt4#옵저버블-heroservice
-  * Observable은 RxJS 라이브러리가 제공하는 클래스 중 가장 중요한 클래스입니다.
-  * 이후에 HTTP에 대해서 알아볼 때 Angular의 HttpClient 클래스가 제공하는 메소드는 모두 RxJS가 제공하는 Observable 타입을 반환한다는 것을 다시 한 번 살펴볼 것입니다.
-  * 이 튜토리얼에서는 리모트 서버를 사용하지 않고 RxJS의 of() 함수로 데이터를 즉시 반환해 봅시다.
-  */
   getHeroes(): Observable<Hero[]> {
-    const c_heroes = of(HEROES).pipe(
-      delay(1000), // pipe, delay 코드 추가 : 실 서비스와 비슷하게 1초의 딜레이 적용
-      tap(_ => this.messageService.add('HeroService: fetched heroes')), // tap 코드 보완 : 데이터 응답 후 메시지 표시
-    );
-    return c_heroes;
+    return this.http.get<Hero[]>(this.heroesUrl)
+      .pipe(
+        tap(_ => this.log('fetched heroes')), // 기존과 동일하게 처리 데이터 응답 후 메시지 표시
+        catchError(this.handleError<Hero[]>('getHeroes', []))
+      );
   }
 
+  /** GET: id에 해당하는 히어로 데이터 가져오기. 존재하지 않으면 404를 반환합니다. */
   getHero(id: number): Observable<Hero> {
-    // 지금은 히어로의 `id` 프로퍼티가 항상 존재한다고 간주합니다.
-    // 에러를 처리하는 방법은 다음 튜토리얼에 대해 알아봅니다.
-    const hero = HEROES.find(h => h.id === id)!;
-    return of(hero).pipe(
-      delay(800), // pipe, delay 코드 추가 : 실 서비스와 비슷하게 0.8초의 딜레이 적용
-      tap(_ => this.messageService.add(`HeroService: fetched hero id=${id}`)), // tap 코드 보완 : 데이터 응답 후 메시지 표시
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.get<Hero>(url)
+      .pipe(
+        tap(_ => this.log(`fetched hero id=${id}`)),
+        catchError(this.handleError<Hero>(`getHero id=${id}`))
+      );
+  }
+
+  /** PUT: 서버에 저장된 히어로 데이터를 변경합니다. */
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions_json_type).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
     );
+  }
+
+  /** POST: 서버에 새로운 히어로를 추가합니다. */
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions_json_type).pipe(
+      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+      catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  /** DELETE: 서버에서 히어로를 제거합니다. */
+  deleteHero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.delete<Hero>(url, this.httpOptions_json_type).pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Hero>('deleteHero'))
+    );
+  }
+
+  /**
+ * HTTP 요청이 실패한 경우를 처리합니다.
+ * 애플리케이션 로직 흐름은 그대로 유지됩니다.
+ *
+ * @param operation - 실패한 동작의 이름
+ * @param result - 기본값으로 반환할 객체
+ */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: 리모트 서버로 에러 메시지 보내기
+      console.error(error); // 지금은 콘솔에 로그를 출력합니다.
+
+      // TODO: 사용자가 이해할 수 있는 형태로 변환하기
+      this.log(`${operation} failed: ${error.message}`);
+
+      // 애플리케이션 로직이 끊기지 않도록 기본값으로 받은 객체를 반환합니다.
+      return of(result as T);
+    };
+  }
+
+  /** HeroService에서 보내는 메시지는 MessageService가 화면에 표시합니다. */
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
   }
 }

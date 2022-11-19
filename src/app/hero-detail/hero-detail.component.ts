@@ -11,8 +11,10 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-  @Input() hero?: Hero;
+  @Input() hero_input?: Hero;
   hero_directly?: Hero; // 직접 가져오는 방식으로 변경예정
+  is_hero_directry: boolean = false;
+  readonly test_var: string = ''; // 추가 샘플코드 : 클래스 영역에서는 const 대신 readonly
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +25,9 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     // 직접 가져오는 방식 + 넘겨주는 방식 호환되도록 코드 보완
     const c_exists_id = this.route.snapshot.paramMap.has('id');
+    this.is_hero_directry = c_exists_id;
+    // c_exists_id = false; // 컴파일 오류발생 (const, 상수)
+    // this.test_var = ''; // 추가 샘플코드 : 컴파일 오류발생(readonly)
     if (!c_exists_id) {
       return;
     }
@@ -37,6 +42,16 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.getHero(id)
       .subscribe(t_hero => this.hero_directly = t_hero);
   }
+
+  save(): void {
+    // 직접 가져오는 방식 + 넘겨주는 방식 호환되도록 코드 보완
+    const c_hero = this.is_hero_directry ? this.hero_directly : this.hero_input;
+    if (c_hero) {
+      this.heroService.updateHero(c_hero)
+        .subscribe(() => this.goBack());
+    }
+  }
+
   goBack(): void {
     this.location.back();
   }
