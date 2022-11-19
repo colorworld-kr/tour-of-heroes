@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap, catchError } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Hero } from "./hero";
 import { HEROES } from "./mock-heroes";
@@ -25,6 +25,10 @@ export class HeroService {
   // collectionName은 in -memory - data - service.ts 파일에 있는 콜렉션을 구별하는 변수입니다.
   private heroesUrl = 'api/heroes';  // 웹 API 형식의 URL로 사용
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(
     private messageService: MessageService,
     private http: HttpClient,
@@ -46,6 +50,14 @@ export class HeroService {
         tap(_ => this.log(`fetched hero id=${id}`)),
         catchError(this.handleError<Hero>(`getHero id=${id}`))
       );
+  }
+
+  /** PUT: 서버에 저장된 히어로 데이터를 변경합니다. */
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
   }
 
   /**
