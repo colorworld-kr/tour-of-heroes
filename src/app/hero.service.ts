@@ -68,6 +68,16 @@ export class HeroService {
     );
   }
 
+  /** DELETE: 서버에서 히어로를 제거합니다. */
+  deleteHero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.delete<Hero>(url, this.httpOptions_json_type).pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Hero>('deleteHero'))
+    );
+  }
+
   /**
  * HTTP 요청이 실패한 경우를 처리합니다.
  * 애플리케이션 로직 흐름은 그대로 유지됩니다.
