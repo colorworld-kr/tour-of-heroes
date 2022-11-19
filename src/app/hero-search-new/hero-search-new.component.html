@@ -1,1 +1,14 @@
-<p>hero-search-new works!</p>
+<div id="search-component">
+  <h4><label for="search-box">Hero Search</label></h4>
+
+  <!-- 설명 링크 : https://www.npmjs.com/package/@ng-select/ng-select/v/9.1.0  -->
+  <!-- Selected: {{selectedHeroId}}<br/> -->
+  <ng-select id="search-box"
+    [items]="heroes$ | async"
+    (search)="search($event.term)"
+    bindValue="id"
+    bindLabel="name"
+    autofocus
+    [(ngModel)]="SelectedHeroId">
+  </ng-select>
+</div>
