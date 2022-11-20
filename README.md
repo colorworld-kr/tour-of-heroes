@@ -10,6 +10,10 @@ Link : <https://angular.kr/tutorial/toh-pt0>
 ## 로드맵 (계속 추가)
 
 ver-0.0.x : 튜토리얼 기준 구현
+ > v.0.0.0 : init angular
+ > v.0.0.1 : 튜토리얼 완료 (<https://angular.kr/tutorial>)
+ > v.0.0.2 : 검색 및 신규 히어로 사용성 향상 (키보드 이벤트 추가)
+
 ver-0.1.x : firebase+firestore 연동 추가 (튜토리얼 기준)
 ver-0.2.x : firebase+function 연동 추가 (튜토리얼 기준)
 ver-0.3.x : function+mysql(procedure) 연동 추가 (튜토리얼 기준)
