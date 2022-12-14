@@ -100,6 +100,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "new-tour-of-heroes:build:production",
+            "firebaseProject": "tour-of-heroes-leekeunsouk",
+            "firebaseHostingSite": "tour-of-heroes-leekeunsouk"
+          }
         }
       }
     }

@@ -1,0 +1,22 @@
+{
+  "projects": {
+    "prod": "ks-prodproject",
+    "test": "ks-testproject"
+  },
+  "targets": {
+    "ks-testproject": {
+      "hosting": {
+        "test": [
+          "ks-tourofheroes"
+        ]
+      }
+    },
+    "ks-prodproject": {
+      "hosting": {
+        "prod": [
+          "ks-toh-prod"
+        ]
+      }
+    }
+  }
+}

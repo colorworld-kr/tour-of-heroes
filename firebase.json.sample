@@ -1,0 +1,24 @@
+{
+  "hosting": {
+    "site": "<firebase 호스팅 사이트명 : (자동생성) 보통 firebase 프로젝트명과 동일하나, 다를 수 있음>",
+    "public": "<컴파일 폴더 위치 예시 : dist/tour-of-heroes (자동생성되나, 필요시 수정 : angular.json - outputPath값)>",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

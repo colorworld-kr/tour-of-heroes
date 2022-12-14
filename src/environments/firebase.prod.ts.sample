@@ -1,0 +1,14 @@
+/*
+상용 제품에 사용할 firebase api 정보(for prod)
+https://console.firebase.google.com/u/0/ >> 프로젝트 세팅 화면에서 정보 확인 가능
+*/
+export const firebaseConfig = {
+    apiKey: 'api-key',
+    authDomain: 'project-id.firebaseapp.com',
+    databaseURL: 'https://project-id.firebaseio.com',
+    projectId: 'project-id',
+    storageBucket: 'project-id.appspot.com',
+    messagingSenderId: 'sender-id',
+    appID: 'app-id',
+    measurementId: 'measurement-id'
+};
