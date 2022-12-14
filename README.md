@@ -14,7 +14,12 @@ ver-0.0.x : 튜토리얼 기준 구현
  > v.0.0.1 : 튜토리얼 완료 (<https://angular.kr/tutorial>)  
  > v.0.0.2 : 검색 및 신규 히어로 사용성 향상 (키보드 이벤트 추가)  
 
-ver-0.1.x : firebase+firestore 연동 추가 (튜토리얼 기준)  
+ver-0.1.x : firebase+firestore 및 배포(hosting) 연동 추가 (튜토리얼 기준)  
+ > v.0.1.0 : firebase hosting 테스트용 배포 완료  
+ >> 배포용 빌드 명령어 : `ng build --configuration production`  
+ >> 파이어베이스 배포 명령어 : `firebase deploy --only hosting`  
+ >>> 메시지 추가 : 배포 명령어 + `-m "호스팅 메시지와 함께 배포 테스트"`  
+
 ver-0.2.x : firebase+function 연동 추가 (튜토리얼 기준)  
 ver-0.3.x : function+mysql(procedure) 연동 추가 (튜토리얼 기준)  
 
