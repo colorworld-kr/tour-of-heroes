@@ -5,8 +5,8 @@ import { map, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
-import { UtilService } from '../util.service';
-import { MessageService } from '../message.service';
+import { UtilService } from 'src/app/services-local/util.service';
+import { MessageService } from 'src/app/services-local/message.service';
 
 import { Hero } from 'src/app/classes/hero';
 import { HEROES } from 'src/app/classes/mock-heroes';

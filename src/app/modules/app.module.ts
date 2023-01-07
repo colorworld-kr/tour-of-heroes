@@ -8,8 +8,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 
 import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
-import { InMemoryDataService } from "../in-memory-data.service";
-import { environment } from '../../environments/environment';
+import { InMemoryDataService } from "src/app/services-local/in-memory-data.service";
+import { environment } from 'src/environments/environment';
 
 import { AppComponent } from '../app.component';
 import { HeroesComponent } from '../heroes/heroes.component';
