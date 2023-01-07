@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap, catchError } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-import { Hero } from "./hero";
+import { Hero } from "./classes/hero";
 import { HEROES } from "./mock-heroes";
 import { MessageService } from './message.service';
 

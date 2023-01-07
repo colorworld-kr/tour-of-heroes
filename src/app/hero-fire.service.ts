@@ -8,7 +8,7 @@ import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/comp
 import { UtilService } from './util.service';
 import { MessageService } from './message.service';
 
-import { Hero } from '../app/hero';
+import { Hero } from './classes/hero';
 import { HEROES } from '../app/mock-heroes';
 import { BehaviorSubject, Observable } from 'rxjs';
 
