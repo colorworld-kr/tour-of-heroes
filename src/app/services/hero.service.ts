@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap, catchError } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-import { Hero } from "./classes/hero";
-import { HEROES } from "./classes/mock-heroes";
-import { MessageService } from './message.service';
+import { Hero } from "../classes/hero";
+import { HEROES } from "../classes/mock-heroes";
+import { MessageService } from '../message.service';
 
 /*
 * Angular CLI로 ng generate service 명령을 실행하면
