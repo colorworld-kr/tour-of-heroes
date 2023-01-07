@@ -16,7 +16,7 @@ import { HeroesComponent } from '../heroes/heroes.component';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { MessagesComponent } from '../components-shared/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { HeroSearchComponent } from '../components-shared/hero-search/hero-search.component';
 import { HeroSearchNewComponent } from '../components-shared/hero-search-new/hero-search-new.component';
 
