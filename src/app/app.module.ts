@@ -40,7 +40,7 @@ import { HeroSearchNewComponent } from './hero-search-new/hero-search-new.compon
       InMemoryDataService, { dataEncapsulation: false }
     ),
 
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],
   providers: [],
