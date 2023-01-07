@@ -9,7 +9,7 @@ import { UtilService } from './util.service';
 import { MessageService } from './message.service';
 
 import { Hero } from './classes/hero';
-import { HEROES } from '../app/mock-heroes';
+import { HEROES } from './classes/mock-heroes';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 // 낙관적 업데이트 (optimistic updates) 개선 : https://developers.google.com/codelabs/building-a-web-app-with-angular-and-firebase?hl=ko#11
