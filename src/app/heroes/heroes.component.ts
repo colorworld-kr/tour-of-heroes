@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { catchError } from 'rxjs';
 
 import { Hero } from '../hero';
-import { HeroService } from "../hero.service";
+// import { HeroService } from "../hero.service";
+import { HeroFireService } from './../hero-fire.service';
 import { MessageService } from './../message.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class HeroesComponent implements OnInit {
   selectedHero?: Hero;
 
   constructor(
-    private heroService: HeroService,
+    // private heroService: HeroService,
+    private heroService: HeroFireService,
     private messageService: MessageService,
   ) { }
 
