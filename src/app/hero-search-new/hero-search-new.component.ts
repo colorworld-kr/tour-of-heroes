@@ -4,7 +4,8 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+// import { HeroService } from '../hero.service';
+import { HeroFireService } from './../hero-fire.service';
 
 @Component({
   selector: 'app-hero-search-new',
@@ -27,7 +28,8 @@ export class HeroSearchNewComponent implements OnInit {
 
   // hero-search.component와 비교해 볼 것
   constructor(
-    private heroService: HeroService,
+    // private heroService: HeroService,
+    private heroService: HeroFireService,
     private router: Router
   ) { }
 
