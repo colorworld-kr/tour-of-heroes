@@ -22,6 +22,7 @@ ver-0.1.x : firebase+firestore 및 배포(hosting) 연동 추가 (튜토리얼 �
  >   - 파이어베이스 배포 명령어 : `firebase deploy --only hosting`  
  >     - 메시지 추가 : 배포 명령어 + `-m "호스팅 메시지와 함께 배포 테스트"`  
  > - v.0.1.1 : firebase firestore 연동  
+ > - v.0.1.2 : firebase authentication 연동
 
 ver-0.2.x : firebase+function 연동 추가 (튜토리얼 기준)  
 ver-0.3.x : function+mysql(procedure) 연동 추가 (튜토리얼 기준)  
