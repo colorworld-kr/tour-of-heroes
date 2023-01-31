@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError } from 'rxjs';
 
-import { Hero } from '../../classes/hero';
+import { Hero } from 'src/app/classes/hero';
 // import { HeroService } from "src/app/services/hero.service";
 import { HeroFireService } from 'src/app/services/hero-fire.service';
 import { MessageService } from 'src/app/services-local/message.service';
