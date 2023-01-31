@@ -20,4 +20,4 @@
     <input id="hero-name" [(ngModel)]="hero_directly.name" placeholder="name">
   </div>
 </div>
-<button *ngIf="hero_input||hero_directly" type="button" (click)="save()">save</button>
+<button *ngIf="this.isLogin && (hero_input||hero_directly)" type="button" (click)="save()">save</button>
