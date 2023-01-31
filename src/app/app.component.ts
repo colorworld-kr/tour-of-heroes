@@ -33,7 +33,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userService.getCurrentUserInfo()
-      .then(user => this.user = user);
+      .then(user => this.user = user)
+      .catch(err => { }); // 로그인 상태가 아닐 때 오류 catch
 
     // 로그인/로그아웃 상태를 구독한다.
     this.authService.authStateUpdated$.pipe(

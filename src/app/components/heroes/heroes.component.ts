@@ -5,6 +5,7 @@ import { Hero } from 'src/app/classes/hero';
 // import { HeroService } from "src/app/services/hero.service";
 import { HeroFireService } from 'src/app/services/hero-fire.service';
 import { MessageService } from 'src/app/services-local/message.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-heroes',
@@ -15,15 +16,24 @@ export class HeroesComponent implements OnInit {
 
   heroes: Hero[] = [];
   selectedHero?: Hero;
+  isLogin: boolean = false;
 
   constructor(
     // private heroService: HeroService,
     private heroService: HeroFireService,
     private messageService: MessageService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
     this.getHeroes();
+    this.getCurrentUserInfo();
+  }
+
+  getCurrentUserInfo(): void {
+    this.userService.getCurrentUserInfo()
+      .then(user => this.isLogin = user.isLogin)
+      .catch(err => this.isLogin = false);
   }
 
   getHeroes(): void {

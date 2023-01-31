@@ -4,14 +4,14 @@
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
-    <button type="button" class="delete" title="delete hero" (click)="delete(hero)">x</button>
+    <button type="button" class="delete" title="delete hero" (click)="delete(hero)" *ngIf="this.isLogin">x</button>
   </li>
 </ul>
 
 <!-- hero 넘겨주는 형식 코드 복원(주석처리) -->
 <!-- <app-hero-detail [hero_input]="selectedHero"></app-hero-detail> -->
 
-<div>
+<div *ngIf="this.isLogin">
   <label for="new-hero">Hero name: </label>
   <input #heroName (keyup.enter)="add(heroName.value); heroName.value=''"/>
 
