@@ -23,10 +23,13 @@ nav a.active {
   background-color: black;
 }
 
-button {
-  margin-top: 20px;
-  background-color: #eee;
-  padding: 1rem;
-  border-radius: 4px;
+.signout-button {
+  padding: .5rem 1.5rem;
   font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.signout-button:hover {
+  color: white;
+  background-color: #42545C;
 }
