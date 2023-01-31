@@ -9,6 +9,25 @@ export class UtilService {
   constructor() { }
 
   /**
+ * img 이미지가 로딩되지 않을 경우 재로딩 시도하는 함수
+ * @param event img 태그의 event
+ */
+  waitAndReload(event: any) {
+    const originalSrc = event.target.src;
+
+    if (parseInt(event.target.getAttribute('data-retry'), 10) !== parseInt(event.target.getAttribute('data-max-retry'), 10)) {
+      event.target.setAttribute('data-retry', parseInt(event.target.getAttribute('data-retry'), 10) + 1);
+      event.target.src = '/assets/images/loading.gif';
+
+      setTimeout(() => {
+        event.target.src = originalSrc;
+      }, 2000);
+    } else {
+      event.target.src = '/assets/images/loading.gif';
+    }
+  }
+
+  /**
    * 요청이 실패한 경우를 처리합니다.(Observable)
    * 애플리케이션 로직 흐름은 그대로 유지됩니다.
    * @param operation - 실패한 동작의 이름
