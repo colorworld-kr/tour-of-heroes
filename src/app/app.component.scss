@@ -22,3 +22,14 @@ nav a:hover {
 nav a.active {
   background-color: black;
 }
+
+.signout-button {
+  padding: .5rem 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.signout-button:hover {
+  color: white;
+  background-color: #42545C;
+}

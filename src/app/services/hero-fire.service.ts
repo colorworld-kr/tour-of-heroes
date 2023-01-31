@@ -48,7 +48,7 @@ export class HeroFireService {
         HEROES.forEach(hero => this.updateHero(hero));
       }
       this.newHeroId = 0 < h.length ? h[0].payload.doc.data().id + 1 : 11;
-      console.log(this.newHeroId);
+      // console.log(this.newHeroId);
     });
   }
 
