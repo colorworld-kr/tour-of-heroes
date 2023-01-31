@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HeroesComponent } from "./heroes/heroes.component";
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
+
+import { HeroesComponent } from "../components/heroes/heroes.component";
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
+import { HeroDetailComponent } from '../components/hero-detail/hero-detail.component';
+import { LoginComponent } from '../components/login/login.component';
+import { RegisterComponent } from '../components/register/register.component';
+import { UserComponent } from '../components/user/user.component';
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthService] },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthService] },
+  { path: 'user', component: UserComponent, resolve: { userData: UserService } },
 ];
 
 /*

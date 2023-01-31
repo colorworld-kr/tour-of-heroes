@@ -2,9 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Hero } from "../hero";
-// import { HeroService } from '../hero.service';
-import { HeroFireService } from './../hero-fire.service';
+import { Hero } from "src/app/classes/hero";
+// import { HeroService } from 'src/app/services/hero.service';
+import { HeroFireService } from 'src/app/services/hero-fire.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -15,6 +16,7 @@ export class HeroDetailComponent implements OnInit {
   @Input() hero_input?: Hero;
   hero_directly?: Hero; // 직접 가져오는 방식으로 변경예정
   is_hero_directry: boolean = false;
+  isLogin: boolean = false;
   readonly test_var: string = ''; // 추가 샘플코드 : 클래스 영역에서는 const 대신 readonly
 
   constructor(
@@ -22,6 +24,7 @@ export class HeroDetailComponent implements OnInit {
     // private heroService: HeroService,
     private heroService: HeroFireService,
     private location: Location,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +37,13 @@ export class HeroDetailComponent implements OnInit {
       return;
     }
     this.getHero();
+    this.getCurrentUserInfo();
+  }
+
+  getCurrentUserInfo(): void {
+    this.userService.getCurrentUserInfo()
+      .then(user => this.isLogin = user.isLogin)
+      .catch(err => this.isLogin = false);
   }
 
   getHero(): void {

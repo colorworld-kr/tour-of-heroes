@@ -1,12 +1,16 @@
 {
   "name": "tour-of-heroes",
-  "version": "0.0.2",
+  "version": "0.1.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build && firebase deploy --only hosting:tour-of-heroes-leekeunsouk -m",
+    "dev-deploy": "ng build && firebase deploy --only hosting:toh-test -m",
+    "sc": "ng generate component --skip-tests true --inline-template true ",
+    "ns": "ng generate service --skip-tests true "
   },
   "private": true,
   "dependencies": {

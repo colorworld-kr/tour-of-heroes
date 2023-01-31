@@ -6,7 +6,7 @@
   <div><span>id: </span>{{hero_input.id}}</div>
   <div>
     <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero_input.name" placeholder="name">
+    <input id="hero-name" [(ngModel)]="hero_input.name" placeholder="name" [readOnly]="!this.isLogin">
   </div>
 </div>
 
@@ -17,7 +17,7 @@
   <div><span>id: </span>{{hero_directly.id}}</div>
   <div>
     <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero_directly.name" placeholder="name">
+    <input id="hero-name" [(ngModel)]="hero_directly.name" placeholder="name" [readOnly]="!this.isLogin">
   </div>
 </div>
-<button *ngIf="hero_input||hero_directly" type="button" (click)="save()">save</button>
+<button *ngIf="this.isLogin && (hero_input||hero_directly)" type="button" (click)="save()">save</button>

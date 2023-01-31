@@ -1,4 +1,13 @@
 <h1>{{title}}</h1>
+
+<div *ngIf="!this.user.isLogin">
+  <a routerLink="/login">Sign In</a>
+</div>
+<div *ngIf="this.user.isLogin">
+  <a routerLink='/user'>{{this.user.name}}</a>
+  <button (click)='this.authService.doLogout()'>Sign Out</button>
+</div>
+
 <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/heroes">Heroes</a>
