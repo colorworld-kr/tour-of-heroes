@@ -12,7 +12,7 @@ import { MessageService } from 'src/app/services-local/message.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm?: FormGroup;
+  loginForm!: FormGroup;
   errorMessage = '';
 
   constructor(

@@ -73,7 +73,8 @@ export class AuthService implements CanActivate {
         new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
-      this.afAuth
+      firebase.auth()
+        // this.afAuth
         .signInWithPopup(provider)
         .then(res => {
           this.log('Login Complete!! (with Google)');
@@ -87,9 +88,12 @@ export class AuthService implements CanActivate {
 
   doRegister(value: { email: string; password: string; }): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      // firebase.auth().
-      this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
+      // const provider = new firebase.auth.EmailAuthProvider();
+      firebase.auth()
+        // this.afAuth
+        .createUserWithEmailAndPassword(value.email, value.password)
         .then(res => {
+          this.log('Signup Complete!! (with email)');
           resolve(res);
         }, err => reject(err));
     });
@@ -97,9 +101,11 @@ export class AuthService implements CanActivate {
 
   doLogin(value: { email: string; password: string; }) {
     return new Promise<any>((resolve, reject) => {
-      // firebase.auth().
-      this.afAuth.signInWithEmailAndPassword(value.email, value.password)
+      firebase.auth()
+        // this.afAuth
+        .signInWithEmailAndPassword(value.email, value.password)
         .then(res => {
+          this.log('Login Complete!! (with email)');
           resolve(res);
         }, err => reject(err));
     });

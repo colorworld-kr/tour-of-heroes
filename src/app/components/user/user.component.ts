@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
       const userData = routeData['userData']; //routeData.userData;
       if (userData) {
         this.user = userData;
-        this.createForm(this.user.name);
+        this.createForm(this.user.name || '');
       }
     });
   }

@@ -10,22 +10,22 @@
       <!-- <img class="card-img-top image" [src]="user.image" *ngIf="user.image" alt="User image"> -->
       <img
         src="{{ this.user.image }}"
-        *ngIf="this.user.image"
+        *ngIf="this.user.provider != 'password' && this.user.image"
         data-max-retry="5"
         data-retry="0"
         (error)="this.util.waitAndReload($event)"
       />
-      <div *ngIf="user.provider != 'password'" class="card-body">
+      <div *ngIf="this.user.provider != 'password'" class="card-body">
         <h4 class="card-title">{{ user.name }}</h4>
         <p class="card-text">
           This is an example of Social Authentication using Firebase in an
           Angular web app.
         </p>
       </div>
-      <div *ngIf="user.provider == 'password'" class="card-body">
+      <div *ngIf="this.user.provider == 'password'" class="card-body">
         <form [formGroup]="profileForm">
           <div class="form-group">
-            <label>Your name</label>
+            <label>Your name : </label>
             <input
               type="text"
               formControlName="name"
