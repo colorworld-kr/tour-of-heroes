@@ -26,6 +26,7 @@
     "@ng-select/ng-select": "^9.1.0",
     "angular-in-memory-web-api": "^0.14.0",
     "firebase": "^9.15.0",
+    "npm": "^9.7.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
