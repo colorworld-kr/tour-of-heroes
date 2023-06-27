@@ -11,6 +11,8 @@ const { initializeApp } = require("firebase-admin/app");
 initializeApp();
 
 const { helloWorld, addmessage, makeuppercase } = require('./api/sample-simple');
+const { mysqlConnectTest } = require('./api/sample-mysql-connection');
 
 exports.helloWorld = helloWorld;
+exports.mysql = mysqlConnectTest;
 
