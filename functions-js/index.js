@@ -9,7 +9,9 @@
 
 const { helloWorld, addmessage, makeuppercase } = require('./api/sample-simple');
 const { mysqlConnectTest } = require('./api/sample-mysql-connection');
+const { api } = require('./api/sample-firebase-auth');
 
 exports.helloWorld = helloWorld;
 exports.mysql = mysqlConnectTest;
+exports.api = api;
 
