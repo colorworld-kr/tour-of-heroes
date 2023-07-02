@@ -1,7 +1,8 @@
-const functions = require("firebase-functions");
+// const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const { onRequest } = require("firebase-functions/v2/https"); //v2
 
 require('dotenv').config();
 
@@ -23,10 +24,10 @@ const SECRET_KEY = process.env.JWT_SECRET_KEY;
 const TOKEN_EXPIRATION = "24h";
 
 // 회원가입 API
-// app.post("/signup", async (req, res) => {
-//   const { email, password, firstName, lastName } = req.body;
-app.get("/signup", async (req, res) => {
-  const { email, password, firstName, lastName } = req.query;
+app.post("/signup", async (req, res) => {
+  const { email, password, firstName, lastName } = req.body;
+  // app.get("/signup", async (req, res) => {
+  //   const { email, password, firstName, lastName } = req.query;
 
   try {
     const userRecord = await admin.auth().createUser({ email, password });
@@ -46,10 +47,10 @@ app.get("/signup", async (req, res) => {
 });
 
 // 로그인 API
-// app.post("/login", async (req, res) => {
-//   const { email, password } = req.body;
-app.get("/login", async (req, res) => {
-  const { email, password } = req.query;
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  // app.get("/login", async (req, res) => {
+  //   const { email, password } = req.query;
 
   try {
     const userRecord = await admin.auth().getUserByEmail(email);
@@ -70,7 +71,7 @@ app.get("/login", async (req, res) => {
   }
 });
 
-const api = functions.https.onRequest(app);
+const api = onRequest(app);
 
 
 module.exports = {
