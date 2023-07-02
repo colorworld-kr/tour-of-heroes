@@ -8,6 +8,10 @@ const mysql = require("mysql");
 // const admin = require('firebase-admin');
 // admin.initializeApp(functions.config().firebase);
 
+// 초기화 실행시 중복 확인
+const { initializeApp, getApps, getApp } = require("firebase-admin/app");
+getApps().length === 0 ? initializeApp() : getApp(); // 중복 초기화 방지
+
 const mysqlConnectTest = onRequest((request, response) => {
 
   // var mysql = require('mysql');

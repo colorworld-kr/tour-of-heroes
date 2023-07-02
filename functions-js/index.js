@@ -7,9 +7,6 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-const { initializeApp } = require("firebase-admin/app");
-initializeApp();
-
 const { helloWorld, addmessage, makeuppercase } = require('./api/sample-simple');
 const { mysqlConnectTest } = require('./api/sample-mysql-connection');
 

@@ -5,10 +5,10 @@ const { logger } = require("firebase-functions");
 const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 
 // The Firebase Admin SDK to access Firestore.
-// const { initializeApp } = require("firebase-admin/app");
+const { initializeApp, getApps, getApp } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
 
-// initializeApp();
+getApps().length === 0 ? initializeApp() : getApp(); // 중복 초기화 방지
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
