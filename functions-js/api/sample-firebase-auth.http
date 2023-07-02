@@ -20,3 +20,10 @@ content-type: application/json
   "firstName": "ks",
   "lastName": "lee"
 }
+
+### /api/protected (token 확인 테스트 샘플)
+### login / signup 후의 응답값 "accessToken" 사용
+### Authorization: Bearer "accessToken 값"
+
+GET https://us-central1-tour-of-heroes-leekeunsouk.cloudfunctions.net/api/protected HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJaNEt2UTg5NEgzZkk2bVhZUGN2NmlhNVR1Q1oyIiwiaWF0IjoxNjg4MjkxMTgwLCJleHAiOjE2ODgzNzc1ODB9.Lk37npUjahY55Jo1zc7LzvaHcvaT-TDbvzzRIpck40U

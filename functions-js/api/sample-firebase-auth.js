@@ -71,6 +71,34 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// JWT 토큰 검증 미들웨어 함수
+const authenticate = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    res.status(401).send("Unauthorized: No token provided");
+    return;
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      res.status(401).send("Unauthorized: Invalid token");
+      return;
+    }
+    req.userId = decoded.userId;
+    next();
+  });
+};
+
+// 인증이 필요한 API 엔드포인트 예시입니다.
+app.get("/protected", authenticate, (req, res) => {
+  // 여기서 req.userId는 토큰에서 해독된 사용자 ID입니다.
+  // 작업을 수행합니다.
+  res.send(`Hello, user ${req.userId}! This is a protected endpoint.`);
+});
+
 const api = onRequest(app);
 
 
