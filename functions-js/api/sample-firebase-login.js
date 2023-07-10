@@ -3,7 +3,6 @@
 // const firebaseConfig = require('../firebaseconfig.json');
 require('dotenv').config();
 
-
 // const functions = require("firebase-functions");
 
 // const firebaseConfig = {
