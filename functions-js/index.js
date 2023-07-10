@@ -10,8 +10,10 @@
 const { helloWorld, addmessage, makeuppercase } = require('./api/sample-simple');
 const { mysqlConnectTest } = require('./api/sample-mysql-connection');
 const { api } = require('./api/sample-firebase-auth');
+const { login } = require('./api/sample-firebase-login');
 
 exports.helloWorld = helloWorld;
 exports.mysql = mysqlConnectTest;
 exports.api = api;
+exports.login = login;
 
